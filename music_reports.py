@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 def import_data_from_file(filename='text_albums_data.txt'):
     content = []
     with open(filename, 'r') as my_file:
@@ -23,6 +26,17 @@ def albums_from_given_time_range(albums_list, time_start, time_end):
             filtered_albums.append(album)
 
     return filtered_albums
+
+
+def max_min_time(albums_list):
+    # TODO: skończyć sortowanie po czasie
+    temp_list = []
+    for i in albums_list:
+        i[4] = i[4].split(':')
+        i[4][0] = int(i[4][0]) * 60
+        i[4][1] = int(i[4][1])
+        i[4] = sum(i[4])
+        print(i)
 
 
 def get_user_action():

@@ -26,7 +26,7 @@ def main():
             albums_between_time = music_reports.albums_from_given_time_range(albums_list, *time)
             display.table(albums_between_time)
         elif user_chosen_action == 4:
-            pass
+            max_min_list = music_reports.max_min_time(albums_list)
         elif user_chosen_action == 5:
             chosen_artist = music_reports.user_chosen_input('Enter artist name: ')
             albums_by_artist = music_reports.find_albums_by_condition(albums_list, chosen_artist, 0)
@@ -43,12 +43,6 @@ def main():
             pass
         elif user_chosen_action == 8:
             break
-        
-        
-        albums_by_genre = music_reports.find_albums_by_condition(albums_list, 'rock', 3)
-        time_start = '1973'
-        time_end = '1976'
-        
 
 
 if __name__ == '__main__':
