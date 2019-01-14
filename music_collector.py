@@ -55,6 +55,7 @@ def main():
         elif user_chosen_action == show_statistics:
             os.system('clear')
             display.main_menu()
+            print('Albums statistics:\n')
             print('Shortest and longest albums:')
             longest_shortest_albums = music_reports.max_min_time(albums_list)
             display.table(longest_shortest_albums)

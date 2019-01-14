@@ -12,6 +12,15 @@ def import_data_from_file(filename='text_albums_data.txt'):
     return content
 
 
+def find_albums_by_literal_condition(albums_list, condition, index):
+    filtered_albums = []
+    for album in albums_list:
+        if list(condition.lower()) == list(album[index].lower().replace(' ', '')):
+            filtered_albums.append(album)
+
+    return filtered_albums
+
+
 def find_albums_by_condition(albums_list, condition, index):
     filtered_albums = []
     for album in albums_list:
@@ -65,7 +74,7 @@ def get_albums_count_by_given_genres(albums_list):
         genres_set.add(i[3])
 
     for i in genres_set:
-        temp_list = find_albums_by_condition(albums_list, i, 3)
+        temp_list = find_albums_by_literal_condition(albums_list, i, 3)
         result_dict[i] = len(temp_list)
 
     return result_dict
