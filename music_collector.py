@@ -33,6 +33,14 @@ def main():
             os.system('clear')
             display.main_menu()
             display.table(albums_by_artist)
+        elif user_chosen_action == 6:
+            chosen_album_title = music_reports.user_chosen_input('Enter album title: ')
+            albums_by_album_title = music_reports.find_albums_by_condition(albums_list, chosen_album_title, 1)
+            os.system('clear')
+            display.main_menu()
+            display.table(albums_by_album_title)
+        elif user_chosen_action == 7:
+            pass
         elif user_chosen_action == 8:
             break
         
