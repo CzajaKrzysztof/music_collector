@@ -5,7 +5,9 @@ def import_data_from_file(filename='text_albums_data.txt'):
     content = []
     with open(filename, 'r') as my_file:
         for line in my_file:
-            content.append(line.rstrip('\n').split(','))
+            line = line.rstrip('\n').split(',')
+            line[2] = int(line[2])
+            content.append(line)
 
     return content
 
@@ -46,20 +48,63 @@ def max_min_time(albums_list):
     return result_list
 
 
-def get_user_action():
-    user_action = int(input('What do you want to do: '))
+def get_young_old_album(albums_list):
+    result_list = []
+    temp_list = list(sorted(albums_list, key=lambda x: x[2]))
 
-    return user_action
+    result_list.append(temp_list[1])
+    result_list.append(temp_list[-1])
+
+    return result_list
+
+
+def get_albums_count_by_given_genres(albums_list):
+    genres_set = set()
+    result_dict = {}
+    for i in albums_list:
+        genres_set.add(i[3])
+
+    for i in genres_set:
+        temp_list = find_albums_by_condition(albums_list, i, 3)
+        result_dict[i] = len(temp_list)
+
+    return result_dict
+
+
+def get_user_action():
+    while True:
+        try:
+            user_action = int(input('\nWhat do you want to do: '))
+        except ValueError:
+            print('Please chose from options 1 to 8')
+            continue
+        else:
+            return user_action
 
 
 def user_chosen_input(question):
-    user_input = input('What music ganre you want to filter albums by: ')
+    user_input = input(question)
 
     return user_input
 
 
 def get_dates_to_filter():
-    time_start = input('Enter start date: ')
-    time_ent = input('Enter end date: ')
+    while True:
+        try:
+            time_start = int(input('Enter start date: '))
+        except ValueError:
+            print('\nPlease enter intiger.')
+            continue
+        else:
+            break
+
+    while True:
+        try:
+            time_ent = int(input('Enter end date: '))
+        except ValueError:
+            print('\nPlease enter intiger.')
+            continue
+        else:
+            break
 
     return time_start, time_ent
