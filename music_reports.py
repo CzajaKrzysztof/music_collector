@@ -10,7 +10,7 @@ def import_data_from_file(filename='text_albums_data.txt'):
 def find_albums_by_condition(albums_list, condition, index):
     filtered_albums = []
     for album in albums_list:
-        if condition in album[index]:
+        if condition.lower() in album[index].lower():
             filtered_albums.append(album)
 
     return filtered_albums
@@ -31,10 +31,10 @@ def get_user_action():
     return user_action
 
 
-def user_chosen_genre():
-    user_genre = input('What music ganre you want to filter albums by: ')
+def user_chosen_input(question):
+    user_input = input('What music ganre you want to filter albums by: ')
 
-    return user_genre
+    return user_input
 
 
 def get_dates_to_filter():
