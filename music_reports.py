@@ -29,14 +29,21 @@ def albums_from_given_time_range(albums_list, time_start, time_end):
 
 
 def max_min_time(albums_list):
-    # TODO: skończyć sortowanie po czasie
     temp_list = []
+    result_list = []
     for i in albums_list:
-        i[4] = i[4].split(':')
-        i[4][0] = int(i[4][0]) * 60
-        i[4][1] = int(i[4][1])
-        i[4] = sum(i[4])
-        print(i)
+        time_in_sec = i[4].split(':')
+        time_in_sec[0] = int(time_in_sec[0]) * 60
+        time_in_sec[1] = int(time_in_sec[1])
+        time_in_sec = sum(time_in_sec)
+        i.append(time_in_sec)
+        temp_list.append(i)
+
+    temp_list = list(sorted(temp_list, key=lambda x: x[5]))
+    result_list.append(temp_list[0][:-1])
+    result_list.append(temp_list[-1][:-1])
+
+    return result_list
 
 
 def get_user_action():

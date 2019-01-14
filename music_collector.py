@@ -27,6 +27,9 @@ def main():
             display.table(albums_between_time)
         elif user_chosen_action == 4:
             max_min_list = music_reports.max_min_time(albums_list)
+            os.system('clear')
+            display.main_menu()
+            display.table(max_min_list)
         elif user_chosen_action == 5:
             chosen_artist = music_reports.user_chosen_input('Enter artist name: ')
             albums_by_artist = music_reports.find_albums_by_condition(albums_list, chosen_artist, 0)
