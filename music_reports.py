@@ -9,7 +9,14 @@ def import_data_from_file(filename='text_albums_data.txt'):
             line[2] = int(line[2])
             content.append(line)
 
+    content = sort_list_by_column(content, 0)
     return content
+
+
+def sort_list_by_column(list_to_sort, colum_index):
+    list_to_sort = list(sorted(list_to_sort, key=lambda x: x[colum_index]))
+
+    return list_to_sort
 
 
 def find_albums_by_literal_condition(albums_list, condition, index):

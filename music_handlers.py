@@ -75,3 +75,9 @@ def handle_adding_album(albums_list):
     display.main_menu()
     new_album_list = music_reports.get_new_album_data_from_user()
     albums_list = music_reports.add_new_album(albums_list, new_album_list)
+
+
+def handle_editing_entry(albums_list):
+    os.system('clear')
+    display.main_menu()
+    display.table(albums_list)

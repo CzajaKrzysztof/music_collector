@@ -8,7 +8,8 @@ def main_menu():
     print("6: find album by title")
     print("7: collection statistics")
     print("8: add new album")
-    print("9: exit")
+    print("9: edit entry")
+    print("0: exit")
     print('\n')
 
 
