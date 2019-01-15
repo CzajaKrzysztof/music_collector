@@ -15,7 +15,10 @@ def import_data_from_file(filename='text_albums_data.txt'):
 def find_albums_by_literal_condition(albums_list, condition, index):
     filtered_albums = []
     for album in albums_list:
-        if list(condition.lower()) == list(album[index].lower().replace(' ', '')):
+        condition = condition.lower().replace(' ', '')
+        genre_in_list = album[index]
+        genre_in_list = genre_in_list.lower().replace(' ', '')
+        if list(condition) == list(genre_in_list):
             filtered_albums.append(album)
 
     return filtered_albums
