@@ -125,13 +125,20 @@ def get_new_album_data_from_user():
     return new_album_data
 
 
+def export_new_album_to_file(new_album_list):
+    with open('text_albums_data.txt', 'a') as my_file:
+        new_album_list[2] = str(new_album_list[2])
+        new_album_string = '\n' + ','.join(new_album_list)
+        my_file.write(new_album_string)
+
+
 def add_new_album(albums_list, new_album_list):
     print('New album data:')
     print('Artist: {0}, album title: {1}, release year: {2}, genre: {3}, length: {4}'.format(*new_album_list))
     reply = input('Are you sure? (y/n): ')
     if reply == 'y':
         albums_list.append(new_album_list)
-        # export_new_album_to_file(albums_list)
+        export_new_album_to_file(new_album_list)
 
 
 def get_user_action():
