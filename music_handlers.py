@@ -6,6 +6,7 @@ import os
 def handle_view_all_albums(albums_list):
     os.system('clear')
     display.main_menu()
+    albums_list = music_reports.sort_list_by_column(albums_list, 0)
     display.table(albums_list)
 
 
@@ -75,9 +76,19 @@ def handle_adding_album(albums_list):
     display.main_menu()
     new_album_list = music_reports.get_new_album_data_from_user()
     albums_list = music_reports.add_new_album(albums_list, new_album_list)
+    os.system('clear')
+    display.main_menu()
 
 
 def handle_editing_entry(albums_list):
     os.system('clear')
     display.main_menu()
+    albums_list = music_reports.sort_list_by_column(albums_list, 0)
     display.table(albums_list)
+    album_index_to_edit = music_reports.get_user_int_input('Enter number of entry to edit: ')
+    os.system('clear')
+    display.main_menu()
+    albums_list = music_reports.edit_album_entry(albums_list, album_index_to_edit)
+    music_reports.export_list_to_file(albums_list)
+    os.system('clear')
+    display.main_menu()

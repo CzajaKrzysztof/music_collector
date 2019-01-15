@@ -23,3 +23,7 @@ def table(albums_list):
 def tabe(dictionary):
         for key in dictionary:
                 print("{},{}".format(key,dictionary[key]))
+
+
+def show_single_album(album_entry):
+        print('Artist: {}\nTitle:  {}\nYear:   {}\nGenre:  {}\nLength: {}'.format(*album_entry))

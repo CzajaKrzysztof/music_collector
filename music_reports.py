@@ -1,4 +1,5 @@
-from datetime import datetime
+import display
+import os
 
 
 def import_data_from_file(filename='text_albums_data.txt'):
@@ -105,7 +106,7 @@ def get_unique_propositions(albums_list, album_list_by):
 
 
 def get_user_string_input(question):
-    result = input(question)
+    result = input('\n' + question)
 
     return result
 
@@ -113,7 +114,7 @@ def get_user_string_input(question):
 def get_user_int_input(question):
     while True:
         try:
-            result = int(input(question))
+            result = int(input('\n' + question))
         except ValueError:
             print('Please enter only numbers')
             continue
@@ -140,12 +141,66 @@ def export_new_album_to_file(new_album_list):
 
 
 def add_new_album(albums_list, new_album_list):
+    os.system('clear')
+    display.main_menu()
     print('New album data:')
-    print('Artist: {0}, album title: {1}, release year: {2}, genre: {3}, length: {4}'.format(*new_album_list))
+    display.show_single_album(new_album_list)
     reply = input('Are you sure? (y/n): ')
     if reply == 'y':
         albums_list.append(new_album_list)
         export_new_album_to_file(new_album_list)
+
+
+def ask_user_for_new_string(str_to_edit, question):
+    print('If you want to leave "{}" hit enter.'.format(str_to_edit))
+    new_string = input(question)
+    if new_string == '':
+        new_string = str_to_edit
+
+    return new_string
+
+
+def ask_user_for_new_int(int_to_edit, question):
+    print('If you want to leave "{}" hit enter.'.format(int_to_edit))
+    while True:
+        new_int = input(question)
+
+        if new_int == '':
+            new_int = int_to_edit
+            return new_int
+        elif new_int != '':
+            try:
+                new_int = eval(new_int)
+            except (ValueError, NameError, SyntaxError):
+                print('Entry need to be a number.')
+                continue
+            else:
+                return new_int
+
+
+def edit_album_entry(albums_list, album_index_to_edit):
+    album_to_edit = albums_list.pop(album_index_to_edit - 1)
+    os.system('clear')
+    display.main_menu()
+    album_to_edit[0] = ask_user_for_new_string(album_to_edit[0], 'Enter new artist name: ')
+    os.system('clear')
+    display.main_menu()
+    album_to_edit[1] = ask_user_for_new_string(album_to_edit[1], 'Enter new album title: ')
+    os.system('clear')
+    display.main_menu()
+    album_to_edit[2] = ask_user_for_new_int(album_to_edit[2], 'Enter new album year: ')
+    os.system('clear')
+    display.main_menu()
+    album_to_edit[3] = ask_user_for_new_string(album_to_edit[3], 'Enter new album genre: ')
+    os.system('clear')
+    display.main_menu()
+    album_to_edit[4] = ask_user_for_new_string(album_to_edit[4], 'Enter new album length: ')
+    albums_list.append(album_to_edit)
+
+    return albums_list
+
+def export_list_to_file(albums_list,filename=''text_albums_data.txt''):
+    with open()
 
 
 def get_user_action():
