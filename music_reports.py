@@ -83,6 +83,19 @@ def get_albums_count_by_given_genres(albums_list):
     return result_dict
 
 
+def get_unique_propositions(albums_list, album_list_by):
+    if len(album_list_by) != 0:
+        chosen_genre = album_list_by[0][3]
+        albums_by_genre = find_albums_by_condition(albums_list, chosen_genre, 3)
+        unique_set_one = set()
+        unique_set_two = set()
+        for element in album_list_by:
+            unique_set_one.add(tuple(element))
+        for element in albums_by_genre:
+            unique_set_two.add(tuple(element))
+        unique_set_with_propositions = (unique_set_two - unique_set_one)
+        return unique_set_with_propositions
+
 def get_user_action():
     while True:
         try:

@@ -38,6 +38,9 @@ def handle_find_albums_by_artist(albums_list):
     os.system('clear')
     display.main_menu()
     display.table(albums_by_artist)
+    unique_set_with_propositions = music_reports.get_unique_propositions(albums_list, albums_by_artist)
+    print('\nChosen for you:')
+    display.table(unique_set_with_propositions)
 
 
 def handle_find_albums_by_title(albums_list):
@@ -46,6 +49,9 @@ def handle_find_albums_by_title(albums_list):
     os.system('clear')
     display.main_menu()
     display.table(albums_by_album_title)
+    unique_set_with_propositions = music_reports.get_unique_propositions(albums_list, albums_by_album_title)
+    print('\nChosen for you:')
+    display.table(albums_by_genre)
 
 
 def handle_show_statistics(albums_list):
