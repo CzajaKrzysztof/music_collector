@@ -199,8 +199,18 @@ def edit_album_entry(albums_list, album_index_to_edit):
 
     return albums_list
 
-def export_list_to_file(albums_list,filename=''text_albums_data.txt''):
-    with open()
+
+def export_list_to_file(albums_list, filename='text_albums_data.txt'):
+    with open(filename, 'w') as my_file:
+        for album in albums_list:
+            album[2] = str(album[2])
+            album_index = albums_list.index(album)
+            if album_index == (len(albums_list) - 1):
+                album_string = ','.join(album)
+                my_file.write(album_string)
+            else:
+                album_string = ','.join(album) + '\n'
+            my_file.write(album_string)
 
 
 def get_user_action():
