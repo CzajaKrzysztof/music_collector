@@ -16,7 +16,8 @@ def main():
     find_albums_by_artist = 5
     find_albums_by_title = 6
     show_statistics = 7
-    leave_program = 8
+    add_album = 8
+    leave_program = 9
 
     while True:
         user_chosen_action = music_reports.get_user_action()
@@ -34,6 +35,8 @@ def main():
             music_handlers.handle_find_albums_by_title(albums_list)
         elif user_chosen_action == show_statistics:
             music_handlers.handle_show_statistics(albums_list)
+        elif user_chosen_action == add_album:
+            music_handlers.handle_adding_album(albums_list)
         elif user_chosen_action == leave_program:
             break
 

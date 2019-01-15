@@ -10,7 +10,7 @@ def handle_view_all_albums(albums_list):
 
 
 def handle_find_albums_by_genre(albums_list):
-    chosen_genre = music_reports.user_chosen_input('Enter music genre: ')
+    chosen_genre = music_reports.get_user_string_input('Enter music genre: ')
     albums_by_genre = music_reports.find_albums_by_condition(albums_list, chosen_genre, 3)
     os.system('clear')
     display.main_menu()
@@ -33,7 +33,7 @@ def handle_shortest_longest_albums(albums_list):
 
 
 def handle_find_albums_by_artist(albums_list):
-    chosen_artist = music_reports.user_chosen_input('Enter artist name: ')
+    chosen_artist = music_reports.get_user_string_input('Enter artist name: ')
     albums_by_artist = music_reports.find_albums_by_condition(albums_list, chosen_artist, 0)
     os.system('clear')
     display.main_menu()
@@ -44,14 +44,14 @@ def handle_find_albums_by_artist(albums_list):
 
 
 def handle_find_albums_by_title(albums_list):
-    chosen_album_title = music_reports.user_chosen_input('Enter album title: ')
+    chosen_album_title = music_reports.get_user_string_input('Enter album title: ')
     albums_by_album_title = music_reports.find_albums_by_condition(albums_list, chosen_album_title, 1)
     os.system('clear')
     display.main_menu()
     display.table(albums_by_album_title)
     unique_set_with_propositions = music_reports.get_unique_propositions(albums_list, albums_by_album_title)
     print('\nChosen for you:')
-    display.table(albums_by_genre)
+    display.table(unique_set_with_propositions)
 
 
 def handle_show_statistics(albums_list):
@@ -68,3 +68,10 @@ def handle_show_statistics(albums_list):
     print('\nAlbums by given the genres')
     albums_count_by_given_genres = music_reports.get_albums_count_by_given_genres(albums_list)
     print(albums_count_by_given_genres)
+
+
+def handle_adding_album(albums_list):
+    os.system('clear')
+    display.main_menu()
+    new_album_list = music_reports.get_new_album_data_from_user()
+    albums_list = music_reports.add_new_album(albums_list, new_album_list)

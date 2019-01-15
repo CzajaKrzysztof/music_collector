@@ -96,6 +96,43 @@ def get_unique_propositions(albums_list, album_list_by):
         unique_set_with_propositions = (unique_set_two - unique_set_one)
         return unique_set_with_propositions
 
+
+def get_user_string_input(question):
+    result = input(question)
+
+    return result
+
+
+def get_user_int_input(question):
+    while True:
+        try:
+            result = int(input(question))
+        except ValueError:
+            print('Please enter only numbers')
+            continue
+        else:
+            return result
+
+
+def get_new_album_data_from_user():
+    new_album_data = []
+    new_album_data.append(get_user_string_input('Enter artist name: '))
+    new_album_data.append(get_user_string_input('Enter album title: '))
+    new_album_data.append(get_user_int_input('Enter album release year: '))
+    new_album_data.append(get_user_string_input('Enter album genre: '))
+    new_album_data.append(get_user_string_input('Enter album length minutes:seconds: '))
+
+    return new_album_data
+
+
+def add_new_album(albums_list, new_album_list):
+    print('New album data:')
+    print('Artist: {0}, album title: {1}, release year: {2}, genre: {3}, length: {4}'.format(*new_album_list))
+    reply = input('Are you sure? (y/n): ')
+    if reply == 'y':
+        albums_list.append(new_album_list)
+
+
 def get_user_action():
     while True:
         try:
@@ -105,12 +142,6 @@ def get_user_action():
             continue
         else:
             return user_action
-
-
-def user_chosen_input(question):
-    user_input = input(question)
-
-    return user_input
 
 
 def get_dates_to_filter():
