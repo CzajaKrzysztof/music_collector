@@ -15,8 +15,12 @@ def main_menu():
 def table(albums_list):
     
     for item in albums_list:
-        print(":",item[0]," "*(15-len(item[0])),
-        item[1]," "*(18-len(item[1])),
-        item[2]," "*4,
-        item[3]," "*(18-len(item[3])),
-        item[4]," "*(13-len(item[4])),)
+        print("| {:14s} | {:25s} | {:4} | {:20s} | {:1s} |" .format(item[0], item[1], item[2], item[3], item[4]))
+
+
+
+def tabe(dictionary):
+        for key in dictionary:
+                print("{},{}".format(key,dictionary[key]))
+
+                
