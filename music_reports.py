@@ -45,13 +45,13 @@ def albums_from_given_time_range(albums_list, time_start, time_end):
 def max_min_time(albums_list):
     temp_list = []
     result_list = []
-    for i in albums_list:
-        time_in_sec = i[4].split(':')
+    for album in albums_list:
+        time_in_sec = album[4].split(':')
         time_in_sec[0] = int(time_in_sec[0]) * 60
         time_in_sec[1] = int(time_in_sec[1])
         time_in_sec = sum(time_in_sec)
-        i.append(time_in_sec)
-        temp_list.append(i)
+        album.append(time_in_sec)
+        temp_list.append(album)
 
     temp_list = list(sorted(temp_list, key=lambda x: x[5]))
     result_list.append(temp_list[0][:-1])
@@ -73,12 +73,12 @@ def get_young_old_album(albums_list):
 def get_albums_count_by_given_genres(albums_list):
     genres_set = set()
     result_dict = {}
-    for i in albums_list:
-        genres_set.add(i[3])
+    for album in albums_list:
+        genres_set.add(album[3])
 
-    for i in genres_set:
-        temp_list = find_albums_by_literal_condition(albums_list, i, 3)
-        result_dict[i] = len(temp_list)
+    for genre in genres_set:
+        temp_list = find_albums_by_literal_condition(albums_list, genre, 3)
+        result_dict[genre] = len(temp_list)
 
     return result_dict
 
@@ -131,6 +131,7 @@ def add_new_album(albums_list, new_album_list):
     reply = input('Are you sure? (y/n): ')
     if reply == 'y':
         albums_list.append(new_album_list)
+        # export_new_album_to_file(albums_list)
 
 
 def get_user_action():

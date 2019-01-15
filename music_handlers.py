@@ -67,7 +67,7 @@ def handle_show_statistics(albums_list):
     print('\nAlbums count is: {}'.format(len(albums_list)))
     print('\nAlbums by given the genres')
     albums_count_by_given_genres = music_reports.get_albums_count_by_given_genres(albums_list)
-    print(albums_count_by_given_genres)
+    display.tabe(albums_count_by_given_genres)
 
 
 def handle_adding_album(albums_list):
