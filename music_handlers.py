@@ -65,9 +65,7 @@ def handle_show_statistics(albums_list):
     albums_count_by_given_genres = music_reports.get_albums_count_by_given_genres(albums_list)
     albums_count_by_given_genres_sorted = music_reports.sort_list_by_column(list(albums_count_by_given_genres.items()), 1)
     albums_count_by_given_genres_sorted.reverse()
-    music_reports.show_dict_in_table(albums_count_by_given_genres_sorted)
-
-    # display.show_table(albums_count_by_given_genres, 'Albums by given the genres') # TODO: zmienic na print dictionalry
+    display.show_dict_in_table(albums_count_by_given_genres_sorted, 'Album counts in genres')
 
 
 def handle_adding_album(albums_list):
