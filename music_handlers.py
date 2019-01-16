@@ -11,6 +11,8 @@ def handle_view_all_albums(albums_list):
 
 
 def handle_find_albums_by_genre(albums_list):
+    os.system('clear')
+    display.main_menu()
     chosen_genre = music_reports.get_user_string_input('Enter music genre: ')
     albums_by_genre = music_reports.find_albums_by_condition(albums_list, chosen_genre, 3)
     os.system('clear')
@@ -19,6 +21,8 @@ def handle_find_albums_by_genre(albums_list):
 
 
 def handel_albums_in_time_range(albums_list):
+    os.system('clear')
+    display.main_menu()
     time = music_reports.get_dates_to_filter()
     os.system('clear')
     display.main_menu()
@@ -27,6 +31,8 @@ def handel_albums_in_time_range(albums_list):
 
 
 def handle_shortest_longest_albums(albums_list):
+    os.system('clear')
+    display.main_menu()
     max_min_list = music_reports.max_min_time(albums_list)
     os.system('clear')
     display.main_menu()
@@ -34,23 +40,27 @@ def handle_shortest_longest_albums(albums_list):
 
 
 def handle_find_albums_by_artist(albums_list):
+    os.system('clear')
+    display.main_menu()
     chosen_artist = music_reports.get_user_string_input('Enter artist name: ')
     albums_by_artist = music_reports.find_albums_by_condition(albums_list, chosen_artist, 0)
     os.system('clear')
     display.main_menu()
     display.show_table(albums_by_artist, 'Albums by ' + chosen_artist)
     unique_set_with_propositions = music_reports.get_unique_propositions(albums_list, albums_by_artist)
-    display.show_table(unique_set_with_propositions, 'Similar albums chosen for you')
+    display.show_table(unique_set_with_propositions, 'Similar albums chosen for you', 'yes')
 
 
 def handle_find_albums_by_title(albums_list):
+    os.system('clear')
+    display.main_menu()
     chosen_album_title = music_reports.get_user_string_input('Enter album title: ')
     albums_by_album_title = music_reports.find_albums_by_condition(albums_list, chosen_album_title, 1)
     os.system('clear')
     display.main_menu()
     display.show_table(albums_by_album_title, 'Albums with title: ' + chosen_album_title)
     unique_set_with_propositions = music_reports.get_unique_propositions(albums_list, albums_by_album_title)
-    display.show_table(unique_set_with_propositions, 'Similar albums chosen for you')
+    display.show_table(unique_set_with_propositions, 'Similar albums chosen for you', 'yes')
 
 
 def handle_show_statistics(albums_list):
