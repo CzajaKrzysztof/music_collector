@@ -111,6 +111,46 @@ def get_user_string_input(question):
     return result
 
 
+def get_user_album_length_input(question):
+    while True:
+        try:
+            result = input('\n' + question)
+            if ':' not in result:
+                raise ValueError
+            result_list = result.split(':')
+            if len(result_list) != 2:
+                raise ValueError
+            result_list[0] = int(result_list[0])
+            result_list[1] = int(result_list[1])
+            break
+        except (ValueError, NameError, SyntaxError):
+            print('Album length must be in format minutes:secundes!')
+    print(result)
+    return result
+
+
+def ask_user_for_new_length_input(length_to_edit, question):
+    while True:
+        try:
+            print('If you want to leave "{}" hit enter.'.format(length_to_edit))
+            result = input('\n' + question)
+            if result == '':
+                result = length_to_edit
+                break
+            if ':' not in result:
+                raise ValueError
+            result_list = result.split(':')
+            if len(result_list) != 2:
+                raise ValueError
+            result_list[0] = int(result_list[0])
+            result_list[1] = int(result_list[1])
+            break
+        except (ValueError, NameError, SyntaxError):
+            print('Album length must be in format minutes:secundes!')
+    print(result)
+    return result
+
+
 def get_user_int_input(question):
     while True:
         try:
@@ -128,7 +168,7 @@ def get_new_album_data_from_user():
     new_album_data.append(get_user_string_input('Enter album title: '))
     new_album_data.append(get_user_int_input('Enter album release year: '))
     new_album_data.append(get_user_string_input('Enter album genre: '))
-    new_album_data.append(get_user_string_input('Enter album length minutes:seconds: '))
+    new_album_data.append(get_user_album_length_input('Enter album length minutes:seconds: '))
 
     return new_album_data
 
@@ -194,7 +234,7 @@ def edit_album_entry(albums_list, album_index_to_edit):
     album_to_edit[3] = ask_user_for_new_string(album_to_edit[3], 'Enter new album genre: ')
     os.system('clear')
     display.main_menu()
-    album_to_edit[4] = ask_user_for_new_string(album_to_edit[4], 'Enter new album length: ')
+    album_to_edit[4] = ask_user_for_new_length_input(album_to_edit[4], 'Enter album length minutes:seconds: ')
     albums_list.append(album_to_edit)
 
     return albums_list
@@ -210,7 +250,7 @@ def export_list_to_file(albums_list, filename='text_albums_data.txt'):
                 my_file.write(album_string)
             else:
                 album_string = ','.join(album) + '\n'
-            my_file.write(album_string)
+                my_file.write(album_string)
 
 
 def get_max_column_length(album_list, colum_index):
@@ -219,7 +259,7 @@ def get_max_column_length(album_list, colum_index):
         current_length = len(str(element[colum_index]))
         if current_length > max_length:
             max_length = current_length
-    
+
     return max_length
 
 

@@ -81,7 +81,7 @@ def handle_editing_entry(albums_list):
     os.system('clear')
     display.main_menu()
     albums_list = music_reports.sort_list_by_column(albums_list, 0)
-    display.table(albums_list)
+    display.show_table(albums_list, 'All albums in collection')
     album_index_to_edit = music_reports.get_user_int_input('Enter number of entry to edit: ')
     os.system('clear')
     display.main_menu()
