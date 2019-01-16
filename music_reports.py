@@ -213,6 +213,16 @@ def export_list_to_file(albums_list, filename='text_albums_data.txt'):
             my_file.write(album_string)
 
 
+def get_max_column_length(album_list, colum_index):
+    max_length = 0
+    for element in album_list:
+        current_length = len(str(element[colum_index]))
+        if current_length > max_length:
+            max_length = current_length
+    
+    return max_length
+
+
 def get_user_action():
     while True:
         try:

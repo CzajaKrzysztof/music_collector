@@ -7,7 +7,7 @@ def handle_view_all_albums(albums_list):
     os.system('clear')
     display.main_menu()
     albums_list = music_reports.sort_list_by_column(albums_list, 0)
-    display.table(albums_list)
+    display.show_table(albums_list, 'All albums in collection')
 
 
 def handle_find_albums_by_genre(albums_list):
@@ -15,7 +15,7 @@ def handle_find_albums_by_genre(albums_list):
     albums_by_genre = music_reports.find_albums_by_condition(albums_list, chosen_genre, 3)
     os.system('clear')
     display.main_menu()
-    display.table(albums_by_genre)
+    display.show_table(albums_by_genre, 'Albums in ' + chosen_genre + ' genre')
 
 
 def handel_albums_in_time_range(albums_list):
@@ -23,14 +23,14 @@ def handel_albums_in_time_range(albums_list):
     os.system('clear')
     display.main_menu()
     albums_between_time = music_reports.albums_from_given_time_range(albums_list, *time)
-    display.table(albums_between_time)
+    display.show_table(albums_between_time, 'Albums between years ' + str(time[0]) + ' and ' + str(time[1]))
 
 
 def handle_shortest_longest_albums(albums_list):
     max_min_list = music_reports.max_min_time(albums_list)
     os.system('clear')
     display.main_menu()
-    display.table(max_min_list)
+    display.show_table(max_min_list, 'Shortest and longest albums')
 
 
 def handle_find_albums_by_artist(albums_list):
@@ -38,10 +38,9 @@ def handle_find_albums_by_artist(albums_list):
     albums_by_artist = music_reports.find_albums_by_condition(albums_list, chosen_artist, 0)
     os.system('clear')
     display.main_menu()
-    display.table(albums_by_artist)
+    display.show_table(albums_by_artist, 'Albums by ' + chosen_artist)
     unique_set_with_propositions = music_reports.get_unique_propositions(albums_list, albums_by_artist)
-    print('\nChosen for you:')
-    display.table(unique_set_with_propositions)
+    display.show_table(unique_set_with_propositions, 'Similar albums chosen for you')
 
 
 def handle_find_albums_by_title(albums_list):
@@ -49,26 +48,26 @@ def handle_find_albums_by_title(albums_list):
     albums_by_album_title = music_reports.find_albums_by_condition(albums_list, chosen_album_title, 1)
     os.system('clear')
     display.main_menu()
-    display.table(albums_by_album_title)
+    display.show_table(albums_by_album_title, 'Albums with title: ' + chosen_album_title)
     unique_set_with_propositions = music_reports.get_unique_propositions(albums_list, albums_by_album_title)
-    print('\nChosen for you:')
-    display.table(unique_set_with_propositions)
+    display.show_table(unique_set_with_propositions, 'Similar albums chosen for you')
 
 
 def handle_show_statistics(albums_list):
     os.system('clear')
     display.main_menu()
     print('Albums statistics:\n')
-    print('Shortest and longest albums:')
+    print('Albums count is: {}'.format(len(albums_list)))
     longest_shortest_albums = music_reports.max_min_time(albums_list)
-    display.table(longest_shortest_albums)
-    print('\nYoungest and oldest albums:')
+    display.show_table(longest_shortest_albums, 'Shortest and longest albums')
     youngest_oldest_albums = music_reports.get_young_old_album(albums_list)
-    display.table(youngest_oldest_albums)
-    print('\nAlbums count is: {}'.format(len(albums_list)))
-    print('\nAlbums by given the genres')
+    display.show_table(youngest_oldest_albums, 'Youngest and oldest albums')
     albums_count_by_given_genres = music_reports.get_albums_count_by_given_genres(albums_list)
-    display.tabe(albums_count_by_given_genres)
+    albums_count_by_given_genres_sorted = music_reports.sort_list_by_column(list(albums_count_by_given_genres.items()), 1)
+    albums_count_by_given_genres_sorted.reverse()
+    music_reports.show_dict_in_table(albums_count_by_given_genres_sorted)
+
+    # display.show_table(albums_count_by_given_genres, 'Albums by given the genres') # TODO: zmienic na print dictionalry
 
 
 def handle_adding_album(albums_list):
