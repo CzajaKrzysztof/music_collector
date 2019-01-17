@@ -3,6 +3,10 @@ import os
 
 
 def import_data_from_file(filename='text_albums_data.txt'):
+    """
+    Import data form text file. Default file name is text_albums_data.txt. Function return list of albums with 2nd
+    index converted to in. Returning list is sorted by first elemtn whch is artist name.
+    """
     content = []
     with open(filename, 'r') as my_file:
         for line in my_file:
@@ -15,12 +19,20 @@ def import_data_from_file(filename='text_albums_data.txt'):
 
 
 def sort_list_by_column(list_to_sort, colum_index):
+    """
+    Function sort given list in parametre list_to_sort by index given in parametre column_index.
+    Function return sorted list.
+    """
     list_to_sort = list(sorted(list_to_sort, key=lambda x: x[colum_index]))
 
     return list_to_sort
 
 
 def find_albums_by_literal_condition(albums_list, condition, index):
+    """
+    Function search for albums that contains exacly condition at given index in list in parametre albums_list.
+    Compered values ale lowercased and turned into lists. Function returns list of albums.
+    """
     filtered_albums = []
     for album in albums_list:
         condition = condition.lower().replace(' ', '')
@@ -33,6 +45,10 @@ def find_albums_by_literal_condition(albums_list, condition, index):
 
 
 def find_albums_by_condition(albums_list, condition, index):
+    """
+    Function search for albums that contains condition at given index in list in parametre albums_list.
+    Compered values ale lowercased. Function returns list of albums.
+    """
     filtered_albums = []
     for album in albums_list:
         if condition.lower() in album[index].lower():
@@ -42,6 +58,10 @@ def find_albums_by_condition(albums_list, condition, index):
 
 
 def albums_from_given_time_range(albums_list, time_start, time_end):
+    """
+    Function search for albums in albums_list that release date at
+    index 2 is between years in parametres time_start and time_end.
+    """
     filtered_albums = []
     for album in albums_list:
         if album[2] >= time_start and album[2] <= time_end:
@@ -142,6 +162,10 @@ def ask_user_for_new_length_input(length_to_edit, question):
             result_list = result.split(':')
             if len(result_list) != 2:
                 raise ValueError
+            if result_list[1] < 0 or result_list[1] > 60:
+                raise ValueError
+            if result_list < 0:
+                raise ValueError
             result_list[0] = int(result_list[0])
             result_list[1] = int(result_list[1])
             break
@@ -157,6 +181,22 @@ def get_user_int_input(question):
             result = int(input('\n' + question))
         except ValueError:
             print('Please enter only numbers')
+            continue
+        else:
+            return result
+
+
+def get_user_index_input(question, albums_list):
+    while True:
+        try:
+            result = int(input('\n' + question))
+            if result == 0 or result > len(albums_list):
+                raise NameError
+        except ValueError:
+            print('Please enter only numbers')
+            continue
+        except NameError:
+            print('Only values between 0 and {} ale permitted'.format(len(albums_list)))
             continue
         else:
             return result
@@ -278,17 +318,14 @@ def get_dates_to_filter():
     while True:
         try:
             time_start = int(input('Enter start date: '))
+            time_end = int(input('Enter end date: '))
+            if time_end < time_start:
+                raise NameError
         except ValueError:
             print('\nPlease enter intiger.')
             continue
-        else:
-            break
-
-    while True:
-        try:
-            time_ent = int(input('Enter end date: '))
-        except ValueError:
-            print('\nPlease enter intiger.')
+        except NameError:
+            print('End date can`t be lowet then start date.')
             continue
         else:
             break

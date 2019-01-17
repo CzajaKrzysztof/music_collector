@@ -4,6 +4,7 @@ import os
 
 
 def handle_view_all_albums(albums_list):
+    """ Handler for manu option to view all albums sorted in form of dynamic table. """
     os.system('clear')
     display.main_menu()
     albums_list = music_reports.sort_list_by_column(albums_list, 0)
@@ -11,6 +12,7 @@ def handle_view_all_albums(albums_list):
 
 
 def handle_find_albums_by_genre(albums_list):
+    """ Handler for manu option to search for albums with given by user genre. """
     os.system('clear')
     display.main_menu()
     chosen_genre = music_reports.get_user_string_input('Enter music genre: ')
@@ -21,6 +23,7 @@ def handle_find_albums_by_genre(albums_list):
 
 
 def handel_albums_in_time_range(albums_list):
+    """ Handler for menu option to serach for albums between given by user years. """
     os.system('clear')
     display.main_menu()
     time = music_reports.get_dates_to_filter()
@@ -31,6 +34,7 @@ def handel_albums_in_time_range(albums_list):
 
 
 def handle_shortest_longest_albums(albums_list):
+    """ Handler for manu oprion to get shortest and longest albums in collection and display it as table."""
     os.system('clear')
     display.main_menu()
     max_min_list = music_reports.max_min_time(albums_list)
@@ -40,6 +44,10 @@ def handle_shortest_longest_albums(albums_list):
 
 
 def handle_find_albums_by_artist(albums_list):
+    """
+    Handler for menu option to search albums by user given artist name and display it as table. Below search
+    results handler displays table with albums with similar genre.
+    """
     os.system('clear')
     display.main_menu()
     chosen_artist = music_reports.get_user_string_input('Enter artist name: ')
@@ -52,6 +60,10 @@ def handle_find_albums_by_artist(albums_list):
 
 
 def handle_find_albums_by_title(albums_list):
+    """
+    Handler for menu option to search albums by user given album title and display it as table. Below search
+    results handler displays table with albums with similar genre.
+    """
     os.system('clear')
     display.main_menu()
     chosen_album_title = music_reports.get_user_string_input('Enter album title: ')
@@ -64,6 +76,7 @@ def handle_find_albums_by_title(albums_list):
 
 
 def handle_show_statistics(albums_list):
+    """ Handler for manu option to display satatistics regarding albums collection. """
     os.system('clear')
     display.main_menu()
     print('Albums statistics:\n')
@@ -79,6 +92,10 @@ def handle_show_statistics(albums_list):
 
 
 def handle_adding_album(albums_list):
+    """
+    Handler for manu option to add new album with user given data. After accepting data by user new  entry is added
+    to albums list and text file with albums data is updated.
+    """
     os.system('clear')
     display.main_menu()
     new_album_list = music_reports.get_new_album_data_from_user()
@@ -88,11 +105,15 @@ def handle_adding_album(albums_list):
 
 
 def handle_editing_entry(albums_list):
+    """
+    Handler for menu option to pick and edit entry from albums collection. After editing, entry is added to albums
+    list and text file with albums data is updated.
+    """
     os.system('clear')
     display.main_menu()
     albums_list = music_reports.sort_list_by_column(albums_list, 0)
     display.show_table(albums_list, 'All albums in collection')
-    album_index_to_edit = music_reports.get_user_int_input('Enter number of entry to edit: ')
+    album_index_to_edit = music_reports.get_user_index_input('Enter number of entry to edit: ', albums_list)
     os.system('clear')
     display.main_menu()
     albums_list = music_reports.edit_album_entry(albums_list, album_index_to_edit)
