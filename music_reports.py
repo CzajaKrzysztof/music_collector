@@ -216,11 +216,13 @@ def get_user_int_input(question):
     while True:
         try:
             result = int(input('\n' + question))
+            if result < 0:
+                raise NameError
+            return result
         except ValueError:
             print('Please enter only numbers')
-            continue
-        else:
-            return result
+        except NameError:
+            print('Year can`t be less then 0.')
 
 
 def get_user_index_input(question, albums_list):
@@ -306,6 +308,9 @@ def ask_user_for_new_int(int_to_edit, question):
         if new_int == '':
             new_int = int_to_edit
             return new_int
+        elif int(new_int) < 0:
+            print('Year can`t be less then 0.')
+            continue
         elif new_int != '':
             try:
                 new_int = eval(new_int)
