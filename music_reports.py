@@ -275,6 +275,7 @@ def add_new_album(albums_list, new_album_list):
 
 
 def ask_user_for_new_string(str_to_edit, question):
+    """ Function asks user to provide new string value for editing function. If pressed enter old value is returned. """
     print('If you want to leave "{}" hit enter.'.format(str_to_edit))
     new_string = input(question)
     if new_string == '':
@@ -284,6 +285,10 @@ def ask_user_for_new_string(str_to_edit, question):
 
 
 def ask_user_for_new_int(int_to_edit, question):
+    """
+    Function asks user to provide new intiger value for editing function. After
+    fool-proofing new value is returned. If pressed enter old value is returned. 
+    """
     print('If you want to leave "{}" hit enter.'.format(int_to_edit))
     while True:
         new_int = input(question)
@@ -302,6 +307,7 @@ def ask_user_for_new_int(int_to_edit, question):
 
 
 def edit_album_entry(albums_list, album_index_to_edit):
+    """ Grouping function for getting data from user for new album """
     album_to_edit = albums_list.pop(album_index_to_edit - 1)
     os.system('clear')
     display.main_menu()
@@ -324,6 +330,7 @@ def edit_album_entry(albums_list, album_index_to_edit):
 
 
 def export_list_to_file(albums_list, filename='text_albums_data.txt'):
+    """ Function exports working in memory list of albums: albums_list to database text file."""
     with open(filename, 'w') as my_file:
         for album in albums_list:
             album[2] = str(album[2])
@@ -337,6 +344,7 @@ def export_list_to_file(albums_list, filename='text_albums_data.txt'):
 
 
 def get_max_column_length(album_list, colum_index):
+    """ Function return maximum length of value in form of string. """
     max_length = 0
     for element in album_list:
         current_length = len(str(element[colum_index]))
@@ -347,17 +355,19 @@ def get_max_column_length(album_list, colum_index):
 
 
 def get_user_action():
+    """ Function return after fool-proofing intiger value which is action in main manu."""
     while True:
         try:
             user_action = int(input('\nWhat do you want to do: '))
         except ValueError:
-            print('Please chose from options 1 to 8')
+            print('Please chose from options 1 to 9')
             continue
         else:
             return user_action
 
 
 def get_dates_to_filter():
+    """ Function return two user entered intiger values as yesrs for searching albums in given time period. """
     while True:
         try:
             time_start = int(input('Enter start date: '))

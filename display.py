@@ -2,6 +2,7 @@ import music_reports
 
 
 def main_menu():
+    """ Function displays main manu. """
     print('MAIN MENU:')
     print("1: view all imported albums")
     print("2: find all albums by genre")
@@ -17,6 +18,10 @@ def main_menu():
 
 
 def show_table(albums_list, table_title, sugestion='no'):
+    """
+    Function displays given albums_list in form of list of list as table. Function require list of 
+    albums, titlefor table. Optional parametre sugestion is used for displaying sugestions table
+    """
     if albums_list == None:
         if sugestion == 'yes':
             print('')
@@ -50,6 +55,7 @@ def show_table(albums_list, table_title, sugestion='no'):
 
 
 def show_dict_in_table(data_from_dict, table_title):
+    """ Function display given dictionary i form of table """
     padding = 1
     aditional_signs = 3
     keys_length = music_reports.get_max_column_length(data_from_dict, 0) + padding
@@ -62,4 +68,5 @@ def show_dict_in_table(data_from_dict, table_title):
 
 
 def show_single_album(album_entry):
+    """ Function display single album entry in form of table """
     print('Artist: {}\nTitle:  {}\nYear:   {}\nGenre:  {}\nLength: {}'.format(*album_entry))
