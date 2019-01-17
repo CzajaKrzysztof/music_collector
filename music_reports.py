@@ -140,12 +140,20 @@ def get_user_album_length_input(question):
             result_list = result.split(':')
             if len(result_list) != 2:
                 raise ValueError
+
             result_list[0] = int(result_list[0])
             result_list[1] = int(result_list[1])
+
+            if result_list[1] < 0 or result_list[1] > 60:
+                raise ReferenceError
+            if result_list[0] < 0:
+                raise ReferenceError
             break
         except (ValueError, NameError, SyntaxError):
             print('Album length must be in format minutes:secundes!')
-    print(result)
+        except ReferenceError:
+            print('Minutes can`t be less then 0. Seconds can`t be less then 0 and more then 60')
+
     return result
 
 
@@ -162,15 +170,19 @@ def ask_user_for_new_length_input(length_to_edit, question):
             result_list = result.split(':')
             if len(result_list) != 2:
                 raise ValueError
-            if result_list[1] < 0 or result_list[1] > 60:
-                raise ValueError
-            if result_list < 0:
-                raise ValueError
+
             result_list[0] = int(result_list[0])
             result_list[1] = int(result_list[1])
+
+            if result_list[1] < 0 or result_list[1] > 60:
+                raise ReferenceError
+            if result_list[0] < 0:
+                raise ReferenceError
             break
         except (ValueError, NameError, SyntaxError):
             print('Album length must be in format minutes:secundes!')
+        except ReferenceError:
+            print('Minutes can`t be less then 0. Seconds can`t be less then 0 and more then 60')
     print(result)
     return result
 
@@ -330,4 +342,4 @@ def get_dates_to_filter():
         else:
             break
 
-    return time_start, time_ent
+    return time_start, time_end
