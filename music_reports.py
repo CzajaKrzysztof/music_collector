@@ -359,11 +359,12 @@ def get_user_action():
     while True:
         try:
             user_action = int(input('\nWhat do you want to do: '))
-        except ValueError:
-            print('Please chose from options 1 to 9')
-            continue
-        else:
+            if user_action < 0 or user_action > 9:
+                raise ValueError
             return user_action
+        except ValueError:
+            print('Please chose from options 0 to 9')
+
 
 
 def get_dates_to_filter():
