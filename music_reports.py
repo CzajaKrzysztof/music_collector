@@ -2,6 +2,11 @@ import display
 import os
 
 
+def default_view():
+    os.system('clear')
+    display.main_menu()
+
+
 def import_data_from_file(filename='text_albums_data.txt'):
     """
     Import data form text file. Default file name is text_albums_data.txt. Function return list of albums with 2nd
