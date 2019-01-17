@@ -71,6 +71,11 @@ def albums_from_given_time_range(albums_list, time_start, time_end):
 
 
 def max_min_time(albums_list):
+    """
+    Function converts string value at index 4 from form:'mm:ss' to sectond as intiger and append to evenry entry in
+    list of albums. Next list is sorted by length album represented by sectond. First and last entry is added to enpty
+    list which is returned.
+    """
     temp_list = []
     result_list = []
     for album in albums_list:
@@ -89,6 +94,10 @@ def max_min_time(albums_list):
 
 
 def get_young_old_album(albums_list):
+    """
+    Function sorts list of albums by relese year at index 2 and append to eplty list.
+    New list containt youngest and oldest album and is returned from function.
+    """
     result_list = []
     temp_list = list(sorted(albums_list, key=lambda x: x[2]))
 
@@ -99,6 +108,7 @@ def get_young_old_album(albums_list):
 
 
 def get_albums_count_by_given_genres(albums_list):
+    """ Function return dictionary containing genre names and albums count for every given genre. """
     genres_set = set()
     result_dict = {}
     for album in albums_list:
@@ -112,6 +122,11 @@ def get_albums_count_by_given_genres(albums_list):
 
 
 def get_unique_propositions(albums_list, album_list_by):
+    """
+    Function return set of unique albums as propositin for user. Function converts 
+    lists of list: album_list, album_list_by to sets of tuples and return only unique 
+    albums in albums list by genre minus albums finded for user.
+    """
     if len(album_list_by) != 0:
         chosen_genre = album_list_by[0][3]
         albums_by_genre = find_albums_by_condition(albums_list, chosen_genre, 3)
@@ -126,12 +141,14 @@ def get_unique_propositions(albums_list, album_list_by):
 
 
 def get_user_string_input(question):
+    """ Function return user input as string. """
     result = input('\n' + question)
 
     return result
 
 
 def get_user_album_length_input(question):
+    """ Function return album length to use in add new album function. Function fool-prools user entry. """
     while True:
         try:
             result = input('\n' + question)
@@ -158,6 +175,7 @@ def get_user_album_length_input(question):
 
 
 def ask_user_for_new_length_input(length_to_edit, question):
+    """ Function return album length to use in edit album function. Function fool-prools user entry. """
     while True:
         try:
             print('If you want to leave "{}" hit enter.'.format(length_to_edit))
@@ -188,6 +206,7 @@ def ask_user_for_new_length_input(length_to_edit, question):
 
 
 def get_user_int_input(question):
+    """ Function return user intiger input after fool-proofing. """
     while True:
         try:
             result = int(input('\n' + question))
@@ -199,6 +218,7 @@ def get_user_int_input(question):
 
 
 def get_user_index_input(question, albums_list):
+    """ Function return intiger value after fool-proofing to use as base for index in editing albums function. """
     while True:
         try:
             result = int(input('\n' + question))
@@ -215,6 +235,7 @@ def get_user_index_input(question, albums_list):
 
 
 def get_new_album_data_from_user():
+    """ Grouping function for geting values from user of new album data. """
     new_album_data = []
     new_album_data.append(get_user_string_input('Enter artist name: '))
     new_album_data.append(get_user_string_input('Enter album title: '))
@@ -226,6 +247,7 @@ def get_new_album_data_from_user():
 
 
 def export_new_album_to_file(new_album_list):
+    """ Function append data of new album to database file. """
     with open('text_albums_data.txt', 'a') as my_file:
         new_album_list[2] = str(new_album_list[2])
         new_album_string = '\n' + ','.join(new_album_list)
@@ -233,12 +255,21 @@ def export_new_album_to_file(new_album_list):
 
 
 def add_new_album(albums_list, new_album_list):
+    """
+    Function asks user if is sure to add new album and if 'yes' add new album data to albums 
+    list user across music_collector application and calls for appending to database file function.
+    """
     os.system('clear')
     display.main_menu()
     print('New album data:')
     display.show_single_album(new_album_list)
-    reply = input('Are you sure? (y/n): ')
-    if reply == 'y':
+    
+    while True:
+        reply = input('Are you sure? (y/n): ')
+        if reply in ['y', 'n', 'Y', 'N']:
+            break
+
+    if reply == 'y' or reply == 'Y':
         albums_list.append(new_album_list)
         export_new_album_to_file(new_album_list)
 
