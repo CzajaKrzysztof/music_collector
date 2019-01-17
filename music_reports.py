@@ -268,8 +268,7 @@ def add_new_album(albums_list, new_album_list):
     album data to albums list user across music_collector application
     and calls for appending to database file function.
     """
-    os.system('clear')
-    display.main_menu()
+    default_view()
     print('New album data:')
     display.show_single_album(new_album_list)
 
@@ -308,36 +307,32 @@ def ask_user_for_new_int(int_to_edit, question):
         if new_int == '':
             new_int = int_to_edit
             return new_int
-        elif int(new_int) < 0:
-            print('Year can`t be less then 0.')
-            continue
         elif new_int != '':
             try:
-                new_int = eval(new_int)
+                new_int = int(new_int)
+                if new_int < 0:
+                    raise ReferenceError
             except (ValueError, NameError, SyntaxError):
                 print('Entry need to be a number.')
                 continue
-            else:
-                return new_int
+            except ReferenceError:
+                print('Year can`t be less then 0.')
+                continue
+            return new_int
 
 
 def edit_album_entry(albums_list, album_index_to_edit):
     """ Grouping function for getting data from user for new album """
     album_to_edit = albums_list.pop(album_index_to_edit - 1)
-    os.system('clear')
-    display.main_menu()
+    default_view()
     album_to_edit[0] = ask_user_for_new_string(album_to_edit[0], 'Enter new artist name: ')
-    os.system('clear')
-    display.main_menu()
+    default_view()
     album_to_edit[1] = ask_user_for_new_string(album_to_edit[1], 'Enter new album title: ')
-    os.system('clear')
-    display.main_menu()
+    default_view()
     album_to_edit[2] = ask_user_for_new_int(album_to_edit[2], 'Enter new album year: ')
-    os.system('clear')
-    display.main_menu()
+    default_view()
     album_to_edit[3] = ask_user_for_new_string(album_to_edit[3], 'Enter new album genre: ')
-    os.system('clear')
-    display.main_menu()
+    default_view()
     album_to_edit[4] = ask_user_for_new_length_input(album_to_edit[4], 'Enter album length minutes:seconds: ')
     albums_list.append(album_to_edit)
 
