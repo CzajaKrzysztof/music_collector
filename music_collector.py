@@ -5,9 +5,8 @@ import os
 
 
 def main():
-    os.system('clear')
+    music_reports.default_view()
     albums_list = music_reports.import_data_from_file()
-    display.main_menu()
 
     wiev_all_albums = 1
     find_albums_by_genre = 2
