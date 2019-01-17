@@ -19,7 +19,7 @@ def main_menu():
 
 def show_table(albums_list, table_title, sugestion='no'):
     """
-    Function displays given albums_list in form of list of list as table. Function require list of 
+    Function displays given albums_list in form of list of list as table. Function require list of
     albums, titlefor table. Optional parametre sugestion is used for displaying sugestions table
     """
     if albums_list == None:
@@ -44,11 +44,11 @@ def show_table(albums_list, table_title, sugestion='no'):
         time_len = music_reports.get_max_column_length(albums_list, 4) + padding
 
         table_string = "{:^{w_lp}} | {:^{w_artist}s} | {:^{w_title}s} | {:^{w_year}} | {:^{w_genre}s} | {:^{w_time}s} |"
-        lengths_dictionary = {'w_lp':lp_len, 'w_artist':artis_len, 'w_title':title_len, 'w_year':year_len, 'w_genre':genre_len, 'w_time':time_len}
+        lengths_dictionary = {'w_lp': lp_len, 'w_artist': artis_len, 'w_title': title_len, 'w_year': year_len, 'w_genre': genre_len, 'w_time': time_len}
         summary_of_lengths = lp_len + artis_len + title_len + year_len + genre_len + time_len + additional_chars
 
         print('\n{:^{table_length}}\n'.format(table_title, table_length=summary_of_lengths))
-        
+
         print(table_string.format('lp.', 'Artist', 'Title', 'Year', 'Genre', 'Length', **lengths_dictionary))
 
         print('-' * summary_of_lengths)

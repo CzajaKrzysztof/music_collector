@@ -128,9 +128,10 @@ def get_albums_count_by_given_genres(albums_list):
 
 def get_unique_propositions(albums_list, album_list_by):
     """
-    Function return set of unique albums as propositin for user. Function converts 
-    lists of list: album_list, album_list_by to sets of tuples and return only unique 
-    albums in albums list by genre minus albums finded for user.
+    Function return set of unique albums as propositin for user.
+    Function converts lists of list: album_list, album_list_by
+    to sets of tuples and return only unique albums in albums
+    list by genre minus albums finded for user.
     """
     if len(album_list_by) != 0:
         chosen_genre = album_list_by[0][3]
@@ -261,14 +262,15 @@ def export_new_album_to_file(new_album_list):
 
 def add_new_album(albums_list, new_album_list):
     """
-    Function asks user if is sure to add new album and if 'yes' add new album data to albums 
-    list user across music_collector application and calls for appending to database file function.
+    Function asks user if is sure to add new album and if 'yes' add new
+    album data to albums list user across music_collector application
+    and calls for appending to database file function.
     """
     os.system('clear')
     display.main_menu()
     print('New album data:')
     display.show_single_album(new_album_list)
-    
+
     while True:
         reply = input('Are you sure? (y/n): ')
         if reply in ['y', 'n', 'Y', 'N']:
@@ -280,7 +282,10 @@ def add_new_album(albums_list, new_album_list):
 
 
 def ask_user_for_new_string(str_to_edit, question):
-    """ Function asks user to provide new string value for editing function. If pressed enter old value is returned. """
+    """
+    Function asks user to provide new string value for editing function.
+    If pressed enter old value is returned.
+    """
     print('If you want to leave "{}" hit enter.'.format(str_to_edit))
     new_string = input(question)
     if new_string == '':
@@ -292,7 +297,7 @@ def ask_user_for_new_string(str_to_edit, question):
 def ask_user_for_new_int(int_to_edit, question):
     """
     Function asks user to provide new intiger value for editing function. After
-    fool-proofing new value is returned. If pressed enter old value is returned. 
+    fool-proofing new value is returned. If pressed enter old value is returned.
     """
     print('If you want to leave "{}" hit enter.'.format(int_to_edit))
     while True:
@@ -369,7 +374,6 @@ def get_user_action():
             return user_action
         except ValueError:
             print('Please chose from options 0 to 9')
-
 
 
 def get_dates_to_filter():
