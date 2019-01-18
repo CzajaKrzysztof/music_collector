@@ -246,9 +246,13 @@ def get_new_album_data_from_user():
     """ Grouping function for geting values from user of new album data. """
     new_album_data = []
     new_album_data.append(get_user_string_input('Enter artist name: '))
+    default_view()
     new_album_data.append(get_user_string_input('Enter album title: '))
+    default_view()
     new_album_data.append(get_user_int_input('Enter album release year: '))
+    default_view()
     new_album_data.append(get_user_string_input('Enter album genre: '))
+    default_view()
     new_album_data.append(get_user_album_length_input('Enter album length minutes:seconds: '))
 
     return new_album_data
@@ -273,7 +277,7 @@ def add_new_album(albums_list, new_album_list):
     display.show_single_album(new_album_list)
 
     while True:
-        reply = input('Are you sure? (y/n): ')
+        reply = input('\nAre you sure? (y/n): ')
         if reply in ['y', 'n', 'Y', 'N']:
             break
 
@@ -288,7 +292,7 @@ def ask_user_for_new_string(str_to_edit, question):
     If pressed enter old value is returned.
     """
     print('If you want to leave "{}" hit enter.'.format(str_to_edit))
-    new_string = input(question)
+    new_string = input('\n' + question)
     if new_string == '':
         new_string = str_to_edit
 
@@ -302,7 +306,7 @@ def ask_user_for_new_int(int_to_edit, question):
     """
     print('If you want to leave "{}" hit enter.'.format(int_to_edit))
     while True:
-        new_int = input(question)
+        new_int = input('\n' + question)
 
         if new_int == '':
             new_int = int_to_edit
@@ -344,6 +348,7 @@ def export_list_to_file(albums_list, filename='text_albums_data.txt'):
     with open(filename, 'w') as my_file:
         for album in albums_list:
             album[2] = str(album[2])
+            album[4] = str(album[4])
             album_index = albums_list.index(album)
             if album_index == (len(albums_list) - 1):
                 album_string = ','.join(album)
