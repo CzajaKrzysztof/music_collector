@@ -1,3 +1,4 @@
+from copy import deepcopy
 import display
 import os
 
@@ -81,9 +82,10 @@ def max_min_time(albums_list):
     list of albums. Next list is sorted by length album represented by sectond. First and last entry is added to enpty
     list which is returned.
     """
+    working_list = deepcopy(albums_list)
     temp_list = []
     result_list = []
-    for album in albums_list:
+    for album in working_list:
         time_in_sec = album[4].split(':')
         time_in_sec[0] = int(time_in_sec[0]) * 60
         time_in_sec[1] = int(time_in_sec[1])
